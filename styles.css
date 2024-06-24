@@ -105,7 +105,8 @@ main {
 }
 
 textarea,
-input[type="email"] {
+input[type="email"],
+input[type="tel"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
