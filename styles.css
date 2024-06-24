@@ -80,17 +80,31 @@ main {
     font-weight: bold;
 }
 
-.close:hover,
+close:hover,
 .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-textarea {
+textarea,
+input[type="email"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
     border: 1px solid #ddd;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
 }

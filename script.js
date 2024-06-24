@@ -8,6 +8,7 @@ const houseData = {
 
 document.addEventListener("DOMContentLoaded", () => {
     updateFunds();
+    document.getElementById('comment-form').addEventListener('submit', submitComment);
 });
 
 function updateFunds() {
@@ -19,6 +20,7 @@ function updateFunds() {
 
 function openModal(house) {
     document.getElementById('modal-house-name').innerText = `Comment on House ${house}`;
+    document.getElementById('house-name').value = house;
     document.getElementById('comment-modal').style.display = 'block';
 }
 
@@ -26,13 +28,33 @@ function closeModal() {
     document.getElementById('comment-modal').style.display = 'none';
 }
 
-function submitComment() {
-    const comment = document.getElementById('comment-text').value;
-    if (comment) {
-        alert(`Your comment has been submitted: ${comment}`);
-        document.getElementById('comment-text').value = '';
-        closeModal();
-    } else {
-        alert('Please enter a comment.');
-    }
+function submitComment(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const data = new FormData(form);
+
+    fetch("https://formspree.io/f/xjkbboeb", {
+        method: "POST",
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            alert('Your comment has been submitted.');
+            form.reset();
+            closeModal();
+        } else {
+            response.json().then(data => {
+                if (Object.hasOwn(data, 'errors')) {
+                    alert(data["errors"].map(error => error["message"]).join(", "));
+                } else {
+                    alert('Oops! There was a problem submitting your form');
+                }
+            })
+        }
+    }).catch(error => {
+        alert('Oops! There was a problem submitting your form');
+    });
 }
