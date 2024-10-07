@@ -1,9 +1,9 @@
 // Data for each house
 const houseData = {
-    Esther: 103000,
-    Ruth: 131000,
-    Matthew: 224760,
-    Daniel: 98500
+    Esther: 215000,
+    Ruth: 278700,
+    Matthew: 306760,
+    Daniel: 138260
 };
 
 document.addEventListener("DOMContentLoaded", () => {
