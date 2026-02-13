@@ -1,9 +1,15 @@
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("year").textContent = new Date().getFullYear();
+  updateFunds();
+  document.getElementById('comment-form').addEventListener('submit', submitComment);
+});
+
 // Data for each house
 const houseData = {
-    Esther: 1500,
-    Ruth: 1750,
-    Matthew: 1600,
-    Daniel: 1800
+    Esther: 210000,
+    Ruth: 210000,
+    Matthew: 210000,
+    Daniel: 210000
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -58,3 +64,4 @@ function submitComment(event) {
         alert('Oops! There was a problem submitting your form');
     });
 }
+
